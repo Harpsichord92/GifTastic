@@ -19,19 +19,36 @@
           // Creates a div to hold the animal
           var animaldiv = $('<div>');
 
-          // Retrieves the Rating Data
-          // Creates an element to have the ratings displayed
           // Displays the ratings
           $(animaldiv).append('<div>' + "Rating: " + response.data[i].rating + '</div>');
 
-          //Retrieves the Images data
-          // Creates an element to have the images displayed
           // Displays the images
-          $(animaldiv).append('<img src="' + response.data[i].images.fixed_width_still.url + '"/>')
-          
-          // Puts the entire animal gif above the previous animals.
+          $(animaldiv).append('<img src=' + response.data[i].images.fixed_width_still.url +
+                              " 'data-still='" + response.data[i].images.fixed_width_still.url +
+                              " 'data-animate='" + response.data[i].images.fixed_width.url +
+                              " 'data-state= 'still' class='gif'>");
+
+          // Puts the animal gif and rating above the previous animals.
           $('#animals').prepend(animaldiv)
-        }
+
+        };
+
+          // Plays and pauses gif on clicks
+          $(".gif").on("click", function() {
+          var state = $(this).attr("data-state");
+
+          if (state === 'still') {
+            $(this).attr('src', $(this).attr("data-animate"));
+            $(this).attr('data-state', "animate" )
+          }
+
+          if (state === 'animate') {
+            $(this).attr('src', $(this).attr("data-still"));;
+            $(this).attr('data-state', "still" )
+          
+          }
+
+          });
 
         });
 
@@ -77,11 +94,11 @@
 
         // Calling renderButtons which handles the processing of our animal array
         renderButtons();
-        
+
       });
 
       // Adding click event listeners to all elements with a class of "animals"
-      //Event Delegation in jQuery - Important
+      //Event Delegation in jQuery
       $(document).on("click", ".animals", displayGifInfo);
 
       // Calling the renderButtons function to display the intial buttons
