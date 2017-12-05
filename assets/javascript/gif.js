@@ -1,7 +1,7 @@
 // Initial array of animals
       var topics = ["Dogs", "Cats", "Otters", "Red Pandas"];
 
-      // displayGifInfo function re-renders the HTML to display the appropriate content
+      // Function to display the appropriate content
       function displayGifInfo() {
 
         var topics = $(this).attr("data-name");
@@ -23,10 +23,13 @@
           $(animaldiv).append('<div>' + "Rating: " + response.data[i].rating + '</div>');
 
           // Displays the images
-          $(animaldiv).append('<img src=' + response.data[i].images.fixed_width_still.url +
-                              " 'data-still='" + response.data[i].images.fixed_width_still.url +
-                              " 'data-animate='" + response.data[i].images.fixed_width.url +
-                              " 'data-state= 'still' class='gif'>");
+          var animalImage = $("<img>")
+          $(animalImage).attr("src", response.data[i].images.fixed_width_still.url);
+          $(animalImage).attr("data-still", response.data[i].images.fixed_width_still.url);
+          $(animalImage).attr("data-animate", response.data[i].images.fixed_width.url);
+          $(animalImage).attr("data-state", 'still');
+          $(animalImage).attr("class", 'gif');
+          $(animaldiv).append(animalImage);
 
           // Puts the animal gif and rating above the previous animals.
           $('#animals').prepend(animaldiv)
