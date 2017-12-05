@@ -1,0 +1,30 @@
+button {
+	padding: 5px;
+	margin: 25px;
+}
+
+#animalButtons {
+	border-bottom: 1px solid;
+	padding-bottom: 5px;
+}
+
+.gif {
+	float: left;
+	padding: 10px;
+}
+
+form {
+	padding-top: 25px;
+}
+
+header {
+	text-align: center;
+	background-image: url("../images/animalplanet.png");
+	background-repeat: no-repeat;
+	height: 125px;
+	width: 100%;
+}
+
+body {
+	background: #00961e;
+}
