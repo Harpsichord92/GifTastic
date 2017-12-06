@@ -9,8 +9,10 @@ button {
 }
 
 .gif {
-	float: left;
+	margin-left: 25%;
 	padding: 10px;
+	width: 50%;
+	height: auto;
 }
 
 form {
